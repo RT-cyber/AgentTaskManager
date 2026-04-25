@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agent Task Manager</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            width: 250px;
+        }
+        button {
+            padding: 10px;
+            background: #22c55e;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .task {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .alta { background: #ef4444; }
+        .media { background: #f59e0b; }
+        .baixa { background: #3b82f6; }
+    </style>
+</head>
+<body>
+
+<h1>🤖 Agent Task Manager</h1>
+
+<form action="/add" method="post">
+    <input type="text" name="title" placeholder="Digite a tarefa..." required>
+    <button type="submit">Adicionar</button>
+</form>
+
+<h2>📋 Tarefas</h2>
+
+{% for task in tasks %}
+<div class="task {{task.priority}}">
+    <strong>{{task.priority.upper()}}</strong> - {{task.title}}
+    <a href="/delete/{{task.id}}" style="margin-left:10px; color:white;">❌</a>
+</div>
+{% endfor %}
+
+</body>
+</html>
